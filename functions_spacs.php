@@ -136,6 +136,37 @@ $mylink = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = 1");
 			return $video;
 		}
 	}
+	function ShowTable2($table)
+	{
+		$column_num = count($table);
+		$row_num = $table[0];
+
+		$result =  "<table>";
+		$result .= "	<tbody>";
+	/*	$num = count($category);*/
+		for ( $index = 0; $index < $row_num ;$index++) {
+			if  ( $index == 0) {
+				$result .= "		<tr>";
+				for ($colum_index = 0; $colum_index < $colum_num;$colum_index++ ) {
+					$result = "<th>$table[$colum_index][index]</th>";
+				}
+				$result .= "		</tr>";
+			} else {
+				$result .= "		<tr>";
+				for ($colum_index = 0; $colum_index < $colum_num;$colum_index++ ) {
+					if ($colum_index == 0) {
+						$result .= "			<td class=category>$table[$colum_index][index]</td>";
+					} else {
+						$result .= "<th>$table[$colum_index][index]</th>";
+					}
+				}
+				$result .= "		</tr>";
+			}
+		}
+		$result .= "	</tbody>";
+		$result .= "</table>";
+		return $result;
+	}
 
 	function ShowTable($category, $product1, $product2)
 	{
