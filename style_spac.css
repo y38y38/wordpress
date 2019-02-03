@@ -1,0 +1,73 @@
+table {
+    border-collapse: collapse;
+/*
+	background-color: #f9fcff;
+*/
+	/*
+	border: 1px #cdcdcd solid;
+	*/
+/*
+	text-align: center;
+*/
+	font-size:70%;
+}
+
+table,th,td {
+	color: #000000;
+	border: 1.8px #e0e0e0 solid;
+	font-size:80%;
+	padding: 5px 12px;
+	text-align: center;
+}
+
+table th {
+	width: 1000px;
+	/*
+	color: #000000;
+	border: 1.8px #cdcdcd solid;
+	*/
+/*
+	font-size:80%;
+*/
+}
+
+table td  {
+/*
+	color: #000000;
+	border: 1.8px #cdcdcd solid;
+*/
+	color: #808080;
+	font-size:75%;
+}
+
+
+table td.category {
+    width: 300px;
+	text-align: left;
+
+}
+
+.CameraIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f030';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+.VideoIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f03d';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+.CheckIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f00c';
+  font-weight: 900;
+  font-size:100%;
+  color: #7aff7a;
+}
+
