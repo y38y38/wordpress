@@ -1,56 +1,21 @@
 <?php
 function TestSpaces($atts) {
-/*
-*/
 	global $wpdb;
 	
 	$myrows = $wpdb->get_results( "SELECT id, name FROM products" );
-/*
-	$query = "SELECT * FROM $wpdb->products WHERE id = 1";
-	$mylink = $wpdb->get_row($query);
-	$results = $wpdb->get_results("SELECT * FROM products LIMIT 3");
-	var_dump($results);
-*/	
-		/*
-$mylink = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = 1");
-*/
-	/*
-		$id_a_rows = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = 1"); 	
-*/
 		global $wpdb;
 		foreach ($wpdb->products as $key => $value) {
   			echo '<p>[' . $key . ']' . $value . '</p>';
 		}
 
-	/*
-	extract(shortcode_atts(array(
-				'product_a' => '1',
-				'product_b' => '1'), $atts));
-
-
-		global $wpdb;
-		$id_a = $product_a;
-		$id_a_rows = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = $id_a"); 	
-	
-		$result =  "Camera";
-		$result .= "$id_a_rows->name";
-		*/
 		$result =  "Camera";
 		return $result;
 	}
 	add_shortcode('TestSpaces', 'TestSpaces');
 
 
+
 	function jisaku_shortcode() {
-	/*
-		return "自作ショートコード表示テスト";
-	*/	
-/*
-		global $wpdb;
-		foreach ($wpdb->tables as $key => $value) {
-  			echo '<p>[' . $key . ']' . $value . '</p>';
-		}
-*/
 	  // 製品名（検索キーワード）
 	  $product_name = isset($_GET['keyword']) ? $_GET['keyword'] : "";
 
@@ -138,26 +103,30 @@ $mylink = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = 1");
 	}
 	function ShowTable2($table)
 	{
-		$column_num = count($table);
-		$row_num = $table[0];
 
+		$colum_num = count($table);
+
+		$cate_table = $table[0];
+        $row_num = count($cate_table);
 		$result =  "<table>";
 		$result .= "	<tbody>";
-	/*	$num = count($category);*/
 		for ( $index = 0; $index < $row_num ;$index++) {
 			if  ( $index == 0) {
 				$result .= "		<tr>";
-				for ($colum_index = 0; $colum_index < $colum_num;$colum_index++ ) {
-					$result = "<th>$table[$colum_index][index]</th>";
+				for ($colum_index = 0; $colum_index < 3;$colum_index++ ) {
+					$colum = $table[$colum_index];
+					$result .= "<th>$colum[$index]</th>";
 				}
 				$result .= "		</tr>";
 			} else {
 				$result .= "		<tr>";
 				for ($colum_index = 0; $colum_index < $colum_num;$colum_index++ ) {
 					if ($colum_index == 0) {
-						$result .= "			<td class=category>$table[$colum_index][index]</td>";
+						$colum = $table[$colum_index];
+						$result .= "			<td class=category>$colum[$index]</td>";
 					} else {
-						$result .= "<th>$table[$colum_index][index]</th>";
+						$colum = $table[$colum_index];
+						$result .= "<th>$colum[$index]</th>";
 					}
 				}
 				$result .= "		</tr>";
@@ -232,8 +201,10 @@ $mylink = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = 1");
 		$product2[5] = GetVideoSlowMotionMax($id_b_rows->slow_motion_1080p_max);
 		$product2[6] = GetVideoSlowMotionMax($id_b_rows->slow_motion_720p_max);
 		$product2[7] = GetVideoSlowMotionMax($id_b_rows->slow_motion_480p_max);
-
-		$result .= ShowTable($category, $product1, $product2);
+		
+		$test_array = array($category, $product1, $product2);
+		$result .=ShowTable2($test_array);
+/*		$result .= ShowTable($category, $product1, $product2);*/
 		return $result;
 	}
 	add_shortcode('VideoSpace2Code', 'VideoSpaces2');
