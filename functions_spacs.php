@@ -126,7 +126,7 @@ function TestSpaces($atts) {
 						$result .= "			<td class=category>$colum[$index]</td>";
 					} else {
 						$colum = $table[$colum_index];
-						$result .= "<th>$colum[$index]</th>";
+						$result .= "<td>$colum[$index]</td>";
 					}
 				}
 				$result .= "		</tr>";
@@ -204,104 +204,11 @@ function TestSpaces($atts) {
 		
 		$test_array = array($category, $product1, $product2);
 		$result .=ShowTable2($test_array);
-/*		$result .= ShowTable($category, $product1, $product2);*/
 		return $result;
 	}
 	add_shortcode('VideoSpace2Code', 'VideoSpaces2');
 
-		
-	function VideoSpaces($atts) {
-		extract(shortcode_atts(array(
-				'product_a' => '1',
-				'product_b' => '1'), $atts));
-				global $wpdb;
-		$id_a = $product_a;
-		$id_b = $product_b;
-		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
-		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
-		$result = "<span class=\" VideoIcon\">Video Recording</span>";
-
-/*		$result =  "Video Recording";*/
-		$result .=  "<table>";
-		$result .= "	<tbody>";
-		$result .= "		<tr>";
-		//name 
-		$result .= "			<th></th>";
-		$result .= "			<th> $id_a_rows->name</th>";
-		$result .= "			<th> $id_b_rows->name</th>";
-		$result .= "		</tr>";
-
-		//1080 60p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>1080 60p</td>";
-		$video = GetVideo($id_a_rows->video_1080_60p);
-		$result .= "			<td> $video </td>";
-		$video = GetVideo($id_b_rows->video_1080_60p);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-
-		//1080 30p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>1080 30p</td>";
-		$video = GetVideo($id_a_rows->video_1080_30p);
-		$result .= "			<td> $video </td>";
-		$video = GetVideo($id_b_rows->video_1080_30p);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-		
-		//720 30p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>720 30p</td>";
-		$video = GetVideo($id_a_rows->video_720_30p);
-		$result .= "			<td> $video </td>";
-		$video = GetVideo($id_b_rows->video_720_30p);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-
-		//480 30p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>480 30p</td>";
-		$video = GetVideo($id_a_rows->video_480_30p);
-		$result .= "			<td> $video </td>";
-		$video = GetVideo($id_b_rows->video_480_30p);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-
-		//Slow Motion 1080p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>1080p Slow Motion Max FPS</td>";
-		$video = GetVideoSlowMotionMax($id_a_rows->slow_motion_1080p_max);
-		$result .= "			<td> $video </td>";
-		$video = GetVideoSlowMotionMax($id_b_rows->slow_motion_1080p_max);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-
-		//Slow Motion 720p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>720p Slow Motion Max FPS</td>";
-		$video = GetVideoSlowMotionMax($id_a_rows->slow_motion_720p_max);
-		$result .= "			<td> $video </td>";
-		$video = GetVideoSlowMotionMax($id_b_rows->slow_motion_720p_max);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-
-		//Slow Motion 480p
-		$result .= "		<tr>";
-		$result .= "			<td class=category>480p Slow Motion Max FPS</td>";
-		$video = GetVideoSlowMotionMax($id_a_rows->slow_motion_480p_max);
-		$result .= "			<td> $video </td>";
-		$video = GetVideoSlowMotionMax($id_b_rows->slow_motion_480p_max);
-		$result .= "			<td> $video </td>";
-		$result .= "		</tr>";
-	
-		
-		$result .= "	</tbody>";
-		$result .= "</table>";
-		return $result;
-	}
-	add_shortcode('VideoSpaceCode', 'VideoSpaces');
-
-	function CameraSpaces($atts) {
+	function CameraSpaces2($atts) {
 		extract(shortcode_atts(array(
 				'product_a' => '1',
 				'product_b' => '1'), $atts));
@@ -310,66 +217,43 @@ function TestSpaces($atts) {
 		global $wpdb;
 		$id_a = $product_a;
 		$id_b = $product_b;
-/*
-		$id_a_rows = $wpdb->get_row("SELECT * FROM $wpdb->products WHERE id = $id_a"); 	
-*/
+
 		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
 		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
 		$result = "<span class=\" CameraIcon\">Camera</span>";
-/*		$result = "Camera";*/
-/*	<span class="CameraIcon">爆弾</span>*/
-		
-		$result .=  "<table>";
-		$result .= "	<tbody>";
-		$result .= "		<tr>";
-		//name 
-		$result .= "			<th></th>";
-		$result .= "			<th> $id_a_rows->name</th>";
-		$result .= "			<th> $id_b_rows->name</th>";
-		$result .= "		</tr>";
 
-		//Rear camera
-		$result .= "		<tr>";
-		$result .= "			<td class=category>Pixel</td>";
-		$pixel = GetPixel($id_a_rows->rear_camera_pixel, $id_a_rows->rear_camera_dual_spac);
-		$result .= "			<td> $pixel </td>";
-		$pixel = GetPixel($id_b_rows->rear_camera_pixel, $id_b_rows->rear_camera_dual_spac);
-		$result .= "			<td> $pixel </td>";
-		$result .= "		</tr>";
 
-		//Rear camera apture
-		$result .= "		<tr>";
-		$result .= "			<td class=category>Aperture</td>";
-		$Aperture = GetAperture($id_a_rows->rear_camera_aperture);
-		$result .= "			<td> $Aperture </td>";
-		$Aperture = GetAperture($id_b_rows->rear_camera_aperture);
-		$result .= "			<td> $Aperture </td>";
-		$result .= "		</tr>";
+		$category = array();
+		$category[0] = "";
+		$category[1] = "Pixel";
+		$category[2] = "Aperture";
+		$category[3] = "Front Camera Pixel";
+		$category[4] = "Front Camera Aperture";
 
-		//Front camera
-		$result .= "		<tr>";
-		$result .= "			<td class=category>Front Camera Pixel</td>";
-		$pixel = GetPixel($id_a_rows->front_camera_pixel, $id_a_rows->front_camera_dual_spac);
-		$result .= "			<td> $pixel </td>";
-		$pixel = GetPixel($id_b_rows->front_camera_pixel, $id_b_rows->front_camera_dual_spac);
-		$result .= "			<td> $pixel </td>";
-		$result .= "		</tr>";
 
-		//Front camera apture
-		$result .= "		<tr>";
-		$result .= "			<td class=category>Front Camera Aperture</td>";
-		
-		$Aperture = GetAperture($id_a_rows->front_camera_aperture);
-		$result .= "			<td> $Aperture </td>";
-		$Aperture = GetAperture($id_b_rows->front_camera_aperture);
-		$result .= "			<td> $Aperture </td>";
-		$result .= "		</tr>";
-		
-		$result .= "	</tbody>";
-		$result .= "</table>";
+		$product1 = array();
+		$product1[0] = $id_a_rows->name;
+        $product1[1] = GetPixel($id_a_rows->rear_camera_pixel, $id_a_rows->rear_camera_dual_spac);
+        $product1[2] = GetAperture($id_a_rows->rear_camera_aperture);
+        $product1[3] = GetPixel($id_a_rows->front_camera_pixel, $id_a_rows->front_camera_dual_spac);
+        $product1[4] = GetAperture($id_a_rows->front_camera_aperture);
+
+
+		$product2 = array();
+		$product2[0] = $id_b_rows->name;
+        $product2[1] = GetPixel($id_b_rows->rear_camera_pixel, $id_b_rows->rear_camera_dual_spac);
+        $product2[2] = GetAperture($id_b_rows->rear_camera_aperture);
+        $product2[3] = GetPixel($id_b_rows->front_camera_pixel, $id_b_rows->front_camera_dual_spac);
+        $product2[4] = GetAperture($id_b_rows->front_camera_aperture);
+
+		$test_array = array($category, $product1, $product2);
+		$result .=ShowTable2($test_array);
+
 		return $result;
 	}
-	add_shortcode('CameraSpaces', 'CameraSpaces');
+	add_shortcode('CameraSpaces2', 'CameraSpaces2');
+
+
 
 	function LinkTable($atts) {
 		extract(shortcode_atts(array(
