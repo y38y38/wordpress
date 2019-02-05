@@ -137,30 +137,21 @@ function TestSpaces($atts) {
 		return $result;
 	}
 
-	function ShowTable($category, $product1, $product2)
-	{
-		$result =  "<table>";
-		$result .= "	<tbody>";
-		$num = count($category);
-		for ( $index = 0; $index < $num ;$index++) {
-			if  ( $index == 0) {
-				$result .= "		<tr>";
-				$result .= "			<th></th>";
-				$result .= "			<th> $product1[$index]</th>";
-				$result .= "			<th> $product2[$index]</th>";
-				$result .= "		</tr>";
-			} else {
-				$result .= "		<tr>";
-				$result .= "			<td class=category>$category[$index]</td>";
-				$result .= "			<td> $product1[$index] </td>";
-				$result .= "			<td> $product2[$index] </td>";
-				$result .= "		</tr>";
-			}
-		}
-		$result .= "	</tbody>";
-		$result .= "</table>";
-		return $result;
-	}
+    function GetVideoSpacs($rows)
+    {
+		$video_spac = array();
+		$video_spac[0] = $rows->name;
+		$video_spac[1] = GetVideo($rows->video_1080_60p);
+		$video_spac[2] = GetVideo($rows->video_1080_30p);
+		$video_spac[3] = GetVideo($rows->video_720_30p);
+		$video_spac[4] = GetVideo($rows->video_480_30p);
+		$video_spac[5] = GetVideoSlowMotionMax($rows->slow_motion_1080p_max);
+		$video_spac[6] = GetVideoSlowMotionMax($rows->slow_motion_720p_max);
+		$video_spac[7] = GetVideoSlowMotionMax($rows->slow_motion_480p_max);
+        
+        return $video_spac;
+    }
+
 	function VideoSpaces2($atts) {
 		extract(shortcode_atts(array(
 				'product_a' => '1',
@@ -181,32 +172,41 @@ function TestSpaces($atts) {
 		$category[5] = "1080p Slow Motion Max FPS";
 		$category[6] = "720p Slow Motion Max FPS";
 		$category[7] = "480p Slow Motion Max FPS";
-		
-		$product1 = array();
-		$product1[0] = $id_a_rows->name;
-		$product1[1] = GetVideo($id_a_rows->video_1080_60p);
-		$product1[2] = GetVideo($id_a_rows->video_1080_30p);
-		$product1[3] = GetVideo($id_a_rows->video_720_30p);
-		$product1[4] = GetVideo($id_a_rows->video_480_30p);
-		$product1[5] = GetVideoSlowMotionMax($id_a_rows->slow_motion_1080p_max);
-		$product1[6] = GetVideoSlowMotionMax($id_a_rows->slow_motion_720p_max);
-		$product1[7] = GetVideoSlowMotionMax($id_a_rows->slow_motion_480p_max);
 
-		$product2 = array();
-		$product2[0] = $id_b_rows->name;
-		$product2[1] = GetVideo($id_b_rows->video_1080_60p);
-		$product2[2] = GetVideo($id_b_rows->video_1080_30p);
-		$product2[3] = GetVideo($id_b_rows->video_720_30p);
-		$product2[4] = GetVideo($id_b_rows->video_480_30p);
-		$product2[5] = GetVideoSlowMotionMax($id_b_rows->slow_motion_1080p_max);
-		$product2[6] = GetVideoSlowMotionMax($id_b_rows->slow_motion_720p_max);
-		$product2[7] = GetVideoSlowMotionMax($id_b_rows->slow_motion_480p_max);
-		
+
+        $product1 = GetVideoSpacs($id_a_rows);
+
+        $product2 = GetVideoSpacs($id_b_rows);
+
 		$test_array = array($category, $product1, $product2);
 		$result .=ShowTable2($test_array);
 		return $result;
 	}
 	add_shortcode('VideoSpace2Code', 'VideoSpaces2');
+
+    function GetCameraCategory()
+    {
+		$category = array();
+		$category[0] = "";
+		$category[1] = "Pixel";
+		$category[2] = "Aperture";
+		$category[3] = "Front Camera Pixel";
+		$category[4] = "Front Camera Aperture";
+
+        return $category;
+    }
+
+    function GetCameraSpacs($rows)
+    {
+   		$camera_spac = array();
+		$camera_spac[0] = $rows->name;
+        $camera_spac[1] = GetPixel($rows->rear_camera_pixel, $rows->rear_camera_dual_spac);
+        $camera_spac[2] = GetAperture($rows->rear_camera_aperture);
+        $camera_spac[3] = GetPixel($rows->front_camera_pixel, $rows->front_camera_dual_spac);
+        $camera_spac[4] = GetAperture($rows->front_camera_aperture);
+
+        return $camera_spac;
+    }
 
 	function CameraSpaces2($atts) {
 		extract(shortcode_atts(array(
@@ -222,29 +222,11 @@ function TestSpaces($atts) {
 		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
 		$result = "<span class=\" CameraIcon\">Camera</span>";
 
+        $category = GetCameraCategory();
 
-		$category = array();
-		$category[0] = "";
-		$category[1] = "Pixel";
-		$category[2] = "Aperture";
-		$category[3] = "Front Camera Pixel";
-		$category[4] = "Front Camera Aperture";
+        $product1 = GetCameraSpacs($id_a_rows);
 
-
-		$product1 = array();
-		$product1[0] = $id_a_rows->name;
-        $product1[1] = GetPixel($id_a_rows->rear_camera_pixel, $id_a_rows->rear_camera_dual_spac);
-        $product1[2] = GetAperture($id_a_rows->rear_camera_aperture);
-        $product1[3] = GetPixel($id_a_rows->front_camera_pixel, $id_a_rows->front_camera_dual_spac);
-        $product1[4] = GetAperture($id_a_rows->front_camera_aperture);
-
-
-		$product2 = array();
-		$product2[0] = $id_b_rows->name;
-        $product2[1] = GetPixel($id_b_rows->rear_camera_pixel, $id_b_rows->rear_camera_dual_spac);
-        $product2[2] = GetAperture($id_b_rows->rear_camera_aperture);
-        $product2[3] = GetPixel($id_b_rows->front_camera_pixel, $id_b_rows->front_camera_dual_spac);
-        $product2[4] = GetAperture($id_b_rows->front_camera_aperture);
+        $product2 = GetCameraSpacs($id_b_rows);
 
 		$test_array = array($category, $product1, $product2);
 		$result .=ShowTable2($test_array);
@@ -253,7 +235,23 @@ function TestSpaces($atts) {
 	}
 	add_shortcode('CameraSpaces2', 'CameraSpaces2');
 
+    function GetLinkCategory()
+    {
+        $category = array();
+        $category[0] = "";
+        $category[1] = "officiel link";
 
+        return $category;
+    }
+
+    function GetLinkSpacs($rows)
+    {
+   		$link_spac = array();
+		$link_spac[0] = $rows->name;
+        $link_spac[1] =  "<a href=\"$rows->link\">link</a>";
+
+        return $link_spac;
+    }
 
 	function LinkTable($atts) {
 		extract(shortcode_atts(array(
@@ -264,27 +262,15 @@ function TestSpaces($atts) {
 		$id_b = $product_b;
 		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
 		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
-		
-		$result =  "Link";
-		$result .=  "<table>";
-		$result .= "	<tbody>";
-		$result .= "		<tr>";
-		//name 
-		$result .= "			<th></th>";
-		$result .= "			<th> $id_a_rows->name</th>";
-		$result .= "			<th> $id_b_rows->name</th>";
-		$result .= "		</tr>";
 
-		//link
-		$result .= "		<tr>";
-		$result .= "			<td class=category>officiel link</td>";
-		$result .= "			<td> <a href= $id_a_rows->link >link</a> </td>";
-		$result .= "			<td> <a href= $id_b_rows->link >link</a> </td>";
-		$result .= "		</tr>";
-		
-		
-		$result .= "	</tbody>";
-		$result .= "</table>";
+
+		$category = GetLinkCategory();
+        $product1 = GetLinkSpacs($id_a_rows);
+        $product2 = GetLinkSpacs($id_b_rows);
+
+		$test_array = array($category, $product1, $product2);
+		$result =ShowTable2($test_array);
+
 		return $result;
 
 	}
