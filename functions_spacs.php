@@ -108,8 +108,9 @@ function TestSpaces($atts) {
 
 		$cate_table = $table[0];
         $row_num = count($cate_table);
-		$result =  "<table>";
-		$result .= "	<tbody>";
+        $result = "<div class=\"boxes\">";
+		$result .=  "<table>";
+		$result .= "<tbody>";
 		for ( $index = 0; $index < $row_num ;$index++) {
 			if  ( $index == 0) {
 				$result .= "		<tr>";
@@ -117,23 +118,24 @@ function TestSpaces($atts) {
 					$colum = $table[$colum_index];
 					$result .= "<th>$colum[$index]</th>";
 				}
-				$result .= "		</tr>";
+				$result .= "</tr>";
 			} else {
-				$result .= "		<tr>";
+				$result .= "<tr>";
 				for ($colum_index = 0; $colum_index < $colum_num;$colum_index++ ) {
 					if ($colum_index == 0) {
 						$colum = $table[$colum_index];
-						$result .= "			<td class=category>$colum[$index]</td>";
+						$result .= "<td class=category><input type=\"checkbox\" id=\"box-$index\"><label for=\"box-$index\">$colum[$index]</label></td>";
 					} else {
 						$colum = $table[$colum_index];
 						$result .= "<td>$colum[$index]</td>";
 					}
 				}
-				$result .= "		</tr>";
+				$result .= "</tr>";
 			}
 		}
-		$result .= "	</tbody>";
+		$result .= "</tbody>";
 		$result .= "</table>";
+        $result .= "</div>";
 		return $result;
 	}
 

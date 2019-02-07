@@ -1,14 +1,5 @@
 table {
     border-collapse: collapse;
-/*
-	background-color: #f9fcff;
-*/
-	/*
-	border: 1px #cdcdcd solid;
-	*/
-/*
-	text-align: center;
-*/
 	font-size:70%;
 }
 
@@ -22,20 +13,9 @@ table,th,td {
 
 table th {
 	width: 1000px;
-	/*
-	color: #000000;
-	border: 1.8px #cdcdcd solid;
-	*/
-/*
-	font-size:80%;
-*/
 }
 
 table td  {
-/*
-	color: #000000;
-	border: 1.8px #cdcdcd solid;
-*/
 	color: #808080;
 	font-size:75%;
 }
@@ -70,4 +50,41 @@ table td.category {
   font-size:100%;
   color: #7aff7a;
 }
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.boxes input[type="checkbox"] { display: none; }
+
+.boxes input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+}
+
+
+.boxes input[type="checkbox"] + label:before { }
+
+.boxes input[type="checkbox"]:checked + label:before {
+  content: '';
+  display: block;
+  border: 1px solid #6cc0e5;
+  width: 5px;
+  height: 10px;
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+}
+
+
+
 
