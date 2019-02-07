@@ -108,7 +108,8 @@ function TestSpaces($atts) {
 
 		$cate_table = $table[0];
         $row_num = count($cate_table);
-        $result = "<div class=\"boxes\">";
+        $result = "<form method=\"post\">";
+        $result .= "<div class=\"boxes\">";
 		$result .=  "<table>";
 		$result .= "<tbody>";
 		for ( $index = 0; $index < $row_num ;$index++) {
@@ -136,6 +137,8 @@ function TestSpaces($atts) {
 		$result .= "</tbody>";
 		$result .= "</table>";
         $result .= "</div>";
+        $result .="</form>";
+
 		return $result;
 	}
 
