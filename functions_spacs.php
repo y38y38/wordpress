@@ -125,7 +125,7 @@ function TestSpaces($atts) {
 				for ($colum_index = 0; $colum_index < $colum_num;$colum_index++ ) {
 					if ($colum_index == 0) {
 						$colum = $table[$colum_index];
-						$result .= "<td class=category><input type=\"checkbox\" id=\"box-$index\"><label for=\"box-$index\">$colum[$index]</label></td>";
+						$result .= "<td class=category><input type=\"checkbox\" id=\"$colum[$index]$index\"><label for=\"$colum[$index]$index\">$colum[$index]</label></td>";
 					} else {
 						$colum = $table[$colum_index];
 						$result .= "<td>$colum[$index]</td>";
@@ -137,7 +137,7 @@ function TestSpaces($atts) {
 		$result .= "</tbody>";
 		$result .= "</table>";
         $result .= "</div>";
-        $result .="</form>";
+        $result .= "</form>";
 
 		return $result;
 	}
