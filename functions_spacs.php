@@ -109,7 +109,7 @@ function TestSpaces($atts) {
 		$cate_table = $table[0];
         $row_num = count($cate_table);
         $result = "<form method=\"post\">";
-        $result .= "<div class=\"boxes\">";
+        $result .= "<div class=\"CheckBoxes\">";
 		$result .=  "<table>";
 		$result .= "<tbody>";
 		for ( $index = 0; $index < $row_num ;$index++) {
@@ -152,7 +152,7 @@ function TestSpaces($atts) {
 		$cate_table = $table[0];
         $row_num = count($cate_table);/*height*/
         $result = "<form method=\"post\">";
-        $result .= "<div class=\"boxes\">";
+        $result .= "<div class=\"CheckBoxes\">";
 		for ( $index = 1; $index < $row_num ;$index++) {
 			$colum = $table[0];/*category name table*/
 			$result .= "<input type=\"checkbox\" id=\"$colum[$index]$index\"><label for=\"$colum[$index]$index\">$colum[$index]</label>";

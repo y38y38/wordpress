@@ -44,9 +44,9 @@ table td  {
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-.boxes input[type="checkbox"] { display: none; }
+.CheckBoxes input[type="checkbox"] { display: none; }
 
-.boxes input[type="checkbox"] + label {
+.CheckBoxes input[type="checkbox"] + label {
   display: block;
   position: relative;
   padding-left: 20px;
@@ -54,9 +54,9 @@ table td  {
 }
 
 
-.boxes input[type="checkbox"] + label:before { }
+.CheckBoxes input[type="checkbox"] + label:before { }
 
-.boxes input[type="checkbox"]:checked + label:before {
+.CheckBoxes input[type="checkbox"]:checked + label:before {
   content: '';
   display: block;
   border: 1px solid #6cc0e5;
