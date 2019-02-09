@@ -225,7 +225,7 @@ function TestSpaces($atts) {
         $product2 = GetVideoSpacs($id_b_rows);
 
 		$test_array = array($category, $product1, $product2);
-		$result .=ShowTable2($test_array);
+		$result .=ShowTable3($test_array);
 		return $result;
 	}
 	add_shortcode('VideoSpace2Code', 'VideoSpaces2');
@@ -315,7 +315,7 @@ function TestSpaces($atts) {
         $product2 = GetLinkSpacs($id_b_rows);
 
 		$test_array = array($category, $product1, $product2);
-		$result =ShowTable2($test_array);
+		$result =ShowTable3($test_array);
 
 		return $result;
 

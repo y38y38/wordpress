@@ -60,10 +60,10 @@ table td  {
   content: '';
   display: block;
   border: 1px solid #6cc0e5;
-  width: 5px;
-  height: 20px;
+  width: 8px;
+  height: 15px;
   position: absolute;
-  top: 3px;
+  top: 4px;
   left: 5px;
   border-radius: 0;
   opacity: 1;
