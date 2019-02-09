@@ -153,21 +153,13 @@ function TestSpaces($atts) {
         $row_num = count($cate_table);/*height*/
         $result = "<form method=\"post\">";
         $result .= "<div class=\"boxes\">";
-		$colum = $table[0];/*category name table*/
-        var_dump($colum);
 		for ( $index = 1; $index < $row_num ;$index++) {
+			$colum = $table[0];/*category name table*/
+			$result .= "<input type=\"checkbox\" id=\"$colum[$index]$index\"><label for=\"$colum[$index]$index\">$colum[$index]</label>";
     		$result .=  "<table>";
 	    	$result .= "<tbody>";
 
             /* write category name */
-			$result .= "<tr>";
-
-			$result .= "<td></td>";
-			$colum = $table[0];/*category name table*/
-			$result .= "<th class=category><input type=\"checkbox\" id=\"$colum[$index]$index\"><label for=\"$colum[$index]$index\">$colum[$index]</label></th>";
-			$result .= "</tr>";
-
-
 			for ($colum_index = 1; $colum_index < $colum_num;$colum_index++ ) {
                 /* write gadget name  */
 	    		$result .= "<tr>";
