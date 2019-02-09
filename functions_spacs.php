@@ -142,6 +142,55 @@ function TestSpaces($atts) {
 		return $result;
 	}
 
+    /* table */
+
+	function ShowTable3($table)
+	{
+
+		$colum_num = count($table);/*width*/
+
+		$cate_table = $table[0];
+        $row_num = count($cate_table);/*height*/
+        $result = "<form method=\"post\">";
+        $result .= "<div class=\"boxes\">";
+		$colum = $table[0];/*category name table*/
+        var_dump($colum);
+		for ( $index = 1; $index < $row_num ;$index++) {
+    		$result .=  "<table>";
+	    	$result .= "<tbody>";
+
+            /* write category name */
+			$result .= "<tr>";
+
+			$result .= "<td></td>";
+			$colum = $table[0];/*category name table*/
+			$result .= "<th class=category><input type=\"checkbox\" id=\"$colum[$index]$index\"><label for=\"$colum[$index]$index\">$colum[$index]</label></th>";
+			$result .= "</tr>";
+
+
+			for ($colum_index = 1; $colum_index < $colum_num;$colum_index++ ) {
+                /* write gadget name  */
+	    		$result .= "<tr>";
+				$colum = $table[$colum_index];
+				$result .= "<td>$colum[0]</td>";
+                /* write categoty value  */
+				$colum = $table[$colum_index];
+				$result .= "<td>$colum[$index]</td>";
+		    	$result .= "</tr>";
+
+            }
+
+		    $result .= "</tbody>";
+		    $result .= "</table>";
+            $result .= "<br/>";
+		}
+        $result .= "</div>";
+        $result .= "</form>";
+
+		return $result;
+	}
+
+
     function GetVideoSpacs($rows)
     {
 		$video_spac = array();
@@ -234,7 +283,7 @@ function TestSpaces($atts) {
         $product2 = GetCameraSpacs($id_b_rows);
 
 		$test_array = array($category, $product1, $product2);
-		$result .=ShowTable2($test_array);
+		$result .=ShowTable3($test_array);
 
 		return $result;
 	}
