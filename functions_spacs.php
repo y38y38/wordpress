@@ -1,72 +1,7 @@
 <?php
-function TestSpaces($atts) {
-	global $wpdb;
-	
-	$myrows = $wpdb->get_results( "SELECT id, name FROM products" );
-		global $wpdb;
-		foreach ($wpdb->products as $key => $value) {
-  			echo '<p>[' . $key . ']' . $value . '</p>';
-		}
-
-		$result =  "Camera";
-		return $result;
-	}
-	add_shortcode('TestSpaces', 'TestSpaces');
-
-
-
-	function jisaku_shortcode() {
-	  // 製品名（検索キーワード）
-	  $product_name = isset($_GET['keyword']) ? $_GET['keyword'] : "";
-
-  	// 検索結果メッセージ
-  	$message = ( isset($_GET['keyword']) && (!$product_name) ) ? "製品名を入力してください。" : "";
-
-
-  	// wpdbオブジェクト
-  	global $wpdb;
-
-  	// ★デバッグ用
-  	$wpdb->show_errors();
-
-  	// キーワードが設定されているとき
-  	if ($product_name) {
-
-    	// SQL
-    	$sql = $wpdb->prepare("SELECT p.name, p.price FROM $wpdb->products p WHERE p.name LIKE %s", '%'.$product_name.'%' );
-    # -> "SELECT p.name, p.price FROM wp_products p WHERE p.name LIKE '%製品名（検索キーワード）%'"
-
-    	// クエリ実行
-    	$rows = $wpdb->get_results($sql);
-
-    	// 検索結果メッセージ
-    	$message = (!$rows) ? "該当する製品が見つかりませんでした。" : count($rows)."件の製品が見つかりました。";
-  	}
-
-  	// 製品価格を表示
-  	if($rows){
-    	foreach ($rows as $row) {
-      		echo "<p>【".$row->name."】価格：".$row->price."円</p>";
-    	}
-  	}
-
-	
-	}
-	add_shortcode('jisaku', 'jisaku_shortcode');
-
-	//ショートコードを使ったphpファイルの呼び出し方法
-	function my_php_Include($params = array()) {
- 		extract(shortcode_atts(array('file' => 'default'), $params));
- 		ob_start();
- 		include(STYLESHEETPATH . "/$file.php");
- 		return ob_get_clean();
-	}
-	add_shortcode('myphp', 'my_php_Include');
-
-	function hogeFunc() {
-    	return "ショートコード作ってみたよ。";
-	}
-	add_shortcode('hoge', 'hogeFunc');
+    define("CAMERA_CATEGORY", "Ca");
+    define("FILTER_INFO", "FI");
+    define("VIEW_INFO", "VI");
 
 	function GetAperture($info) {
 		if ( $info == 0 ) {
@@ -208,11 +143,11 @@ function TestSpaces($atts) {
         $result = "<form method=\"get\">";
 
 
-        $view_info_name = $filter_name ."ViewInfo";
+        $view_info_name = $filter_name . VIEW_INFO;
         $result .= "<input type = \"hidden\" name = \"$view_info_name\" value = $view_info>";
 
         for ( $index = 0; $index < $row_num;$index++) {
-            $filter_name1 = $filter_name ."[". strval($index) . "]";
+            $filter_name1 = $filter_name . FILTER_INFO . "[". strval($index) . "]";
             //var_dump($filter_name1);
             $result .= "<input type = \"hidden\" name = \"$filter_name1\" value = \"0\">";
         }
@@ -221,7 +156,7 @@ function TestSpaces($atts) {
 		for ( $index = 1; $index < $row_num ;$index++) {
             if (IsView($view_info, $index) != 0) {
     			$colum = $table[0];/*category name table*/
-                $filter_name1 = $filter_name ."[". strval($index) . "]";
+                $filter_name1 = $filter_name . FILTER_INFO . "[". strval($index) . "]";
 	    		$result .= "<input type=\"checkbox\" id=\"$colum[$index]$index\" name = \"$filter_name1\" value = \"1\"><label for=\"$colum[$index]$index\">$colum[$index]</label>";
     	    	$result .=  "<table>";
 	        	$result .= "<tbody>";
@@ -245,11 +180,11 @@ function TestSpaces($atts) {
             }
 
 		}
-        $view_info_name = $filter_name ."ViewInfo";
+        $view_info_name = $filter_name . VIEW_INFO;
         $all_view_info = Num2AllFilter($row_num);
         //var_dump($all_view_info);
-        $result .= "<button type =\"submit\"  name = \"filter_clear\"> view all category</button><br>";
-        $result .= "<button type =\"submit\" >filter check category</button>";
+        $result .= "<button type =\"submit\" >filter check category</button><br>";
+        $result .= "<button type =\"submit\"  name = \"filter_clear\"> view all category</button>";
         $result .= "</div>";
         $result .= "</form>";
 
@@ -307,7 +242,6 @@ function TestSpaces($atts) {
     {
         return 4;
     }
-
     function GetCameraCategory()
     {
 		$category = array();
@@ -353,10 +287,10 @@ function TestSpaces($atts) {
         if(isset($_GET['filter_clear'])){
             return 0;
          }
-
-        if(isset($_GET['camera'])){
-            $camera_filter_info_string = $_GET['camera'];
-            //var_dump($camera_filter_info_string);
+        $filter_name = CAMERA_CATEGORY . FILTER_INFO ;
+        if(isset($_GET[$filter_name])){
+            $camera_filter_info_string = $_GET[$filter_name];
+            var_dump($camera_filter_info_string);
             $camera_filter_info = array2bin($camera_filter_info_string);
         }
         //var_dump($camera_filter_info);
@@ -370,9 +304,10 @@ function TestSpaces($atts) {
         if(isset($_GET['filter_clear'])){
             return $camera_view_info;
          }
-        if(isset($_GET['cameraViewInfo'])){
-            $camera_view_info_string = $_GET['cameraViewInfo'];
-            //var_dump($camera_view_info_string);
+        $view_name = CAMERA_CATEGORY . VIEW_INFO ;
+        if(isset($_GET[$view_name])){
+            $camera_view_info_string = $_GET[$view_name];
+            var_dump($camera_view_info_string);
             $camera_view_info = intval($camera_view_info_string);
         }
         //var_dump($camera_view_info);
@@ -414,7 +349,7 @@ function TestSpaces($atts) {
         //var_dump($view_info);
 
 		$test_array = array($category, $product1, $product2);
-		$result .=ShowTable4("camera", $view_info, $test_array);
+		$result .=ShowTable4(CAMERA_CATEGORY, $view_info, $test_array);
 
 		return $result;
 	}
@@ -463,33 +398,6 @@ function TestSpaces($atts) {
 
 
 		
-	function hogeFunc3() {
-		global $wpdb;
-		// テーブル内の全データをSELECT
-		$rows = $wpdb->get_results("SELECT * FROM wp_product");
-
-		$size = count($rows,1);
-		echo $size;
-		
-		// 取得したデータ1行ごとに処理。
-		// データはカラム名の連想配列になっているので、
-		// $変数->nameのようにカラム名をそのまま指定すれば中身のデータを取得できる。
-		$result = "<table><tbody>";
-		echo "test";
-		echo "test";
-/*
-		echo $rows;
-		print_r($rows);
-		echo $result;
-		foreach($rows as $row){
-    		$result .= "<tr><td>" . $row->name ."</td><td>" . $row->num ."</td></tr>";
-		}
-		$result .= "</tbody></table>";
- 
-		print $result;		
-*/
-	}
-	add_shortcode('hoge3', 'hogeFunc3');
 
 	
 ?>
