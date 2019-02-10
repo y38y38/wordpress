@@ -181,7 +181,89 @@ function TestSpaces($atts) {
 
 		return $result;
 	}
+    
+    function Num2AllFilter($category_num)
+    {
+        $filter = 0;
+        for ($i = 0;$i < $category_num;$i++)
+        {
+            $filter |= 1<<$i;
+        }
+        return $filter;
+    }
 
+    function IsView($view_info, $index)
+    {
+        $tmp = $view_info >> $index;
+        $tmp = $tmp & 0x1;
+        return $tmp;
+    }
+	function ShowTable4($filter_name, $view_info, $table)
+	{
+
+		$colum_num = count($table);/*width*/
+
+		$cate_table = $table[0];
+        $row_num = count($cate_table);/*height*/
+        $result = "<form method=\"get\">";
+
+
+        $view_info_name = $filter_name ."ViewInfo";
+        $result .= "<input type = \"hidden\" name = \"$view_info_name\" value = $view_info>";
+
+        for ( $index = 0; $index < $row_num;$index++) {
+            $filter_name1 = $filter_name ."[". strval($index) . "]";
+            //var_dump($filter_name1);
+            $result .= "<input type = \"hidden\" name = \"$filter_name1\" value = \"0\">";
+        }
+
+        $result .= "<div class=\"CheckBoxes\">";
+		for ( $index = 1; $index < $row_num ;$index++) {
+            if (IsView($view_info, $index) != 0) {
+    			$colum = $table[0];/*category name table*/
+                $filter_name1 = $filter_name ."[". strval($index) . "]";
+	    		$result .= "<input type=\"checkbox\" id=\"$colum[$index]$index\" name = \"$filter_name1\" value = \"1\"><label for=\"$colum[$index]$index\">$colum[$index]</label>";
+    	    	$result .=  "<table>";
+	        	$result .= "<tbody>";
+
+                /* write category name */
+			    for ($colum_index = 1; $colum_index < $colum_num;$colum_index++ ) {
+                    /* write gadget name  */
+	    		    $result .= "<tr>";
+				    $colum = $table[$colum_index];
+				    $result .= "<td>$colum[0]</td>";
+                    /* write categoty value  */
+				    $colum = $table[$colum_index];
+				    $result .= "<td>$colum[$index]</td>";
+		    	    $result .= "</tr>";
+
+                }
+
+	    	    $result .= "</tbody>";
+	    	    $result .= "</table>";
+                $result .= "<br/>";
+            }
+
+		}
+/*        if ($view_info != 1) {*/
+            $view_info_name = $filter_name ."ViewInfo";
+            $all_view_info = Num2AllFilter($row_num);
+            var_dump($all_view_info);
+            $result .= "<button type =\"submit\"  name = \"filter_clear\"> view all category</button>";
+            $result .= "<button type =\"submit\" >filter check category</button>";
+/*
+        } else {
+            $view_info = Num2AllFilter($row_num);
+            $view_info_name = $filter_name ."ViewInfo";
+            $result .= "<input type = \"hidden\" name = \"$view_info_name\" value = $view_info>";
+            $result .= "<input type = \"submit\" value=\"view all categoty\">";
+        }
+*/
+        $result .= "</div>";
+        $result .= "</form>";
+
+		return $result;
+	}
 
     function GetVideoSpacs($rows)
     {
@@ -230,6 +312,11 @@ function TestSpaces($atts) {
 	}
 	add_shortcode('VideoSpace2Code', 'VideoSpaces2');
 
+    function GetCameraCategoryNum()
+    {
+        return 4;
+    }
+
     function GetCameraCategory()
     {
 		$category = array();
@@ -253,12 +340,64 @@ function TestSpaces($atts) {
 
         return $camera_spac;
     }
+    function  array2bin($filter_array)
+    {
+        $filter_binary = 0;
+        $filter_size = count($filter_array);
+
+        for ( $i = 0; $i < $filter_size ; $i++) {
+            if ($filter_array[$i] == '0') {
+
+            } else {
+                $filter_binary |= 1<<$i;
+            }
+        }
+        return $filter_binary;
+    }
+
+    function GetCameraFilterInfo()
+    {
+        $camera_filter_info = 0;
+
+        if(isset($_GET['filter_clear'])){
+            return 0;
+         }
+
+        if(isset($_GET['camera'])){
+            $camera_filter_info_string = $_GET['camera'];
+            //var_dump($camera_filter_info_string);
+            $camera_filter_info = array2bin($camera_filter_info_string);
+        }
+        //var_dump($camera_filter_info);
+        return $camera_filter_info;
+    }
+
+
+    function GetCameraViewInfo()
+    {
+        $camera_view_info = 0x1f;
+        if(isset($_GET['filter_clear'])){
+            return $camera_view_info;
+         }
+        if(isset($_GET['cameraViewInfo'])){
+            $camera_view_info_string = $_GET['cameraViewInfo'];
+            //var_dump($camera_view_info_string);
+            $camera_view_info = intval($camera_view_info_string);
+        }
+        //var_dump($camera_view_info);
+        return $camera_view_info;
+    }
+
+    function UpdateCameraViewInfo($view_info, $filter_info)
+    {
+        $view_info &= ~$filter_info;
+        return $view_info;
+    }
 
 	function CameraSpaces2($atts) {
 		extract(shortcode_atts(array(
 				'product_a' => '1',
 				'product_b' => '1'), $atts));
-
 
 		global $wpdb;
 		$id_a = $product_a;
@@ -274,8 +413,17 @@ function TestSpaces($atts) {
 
         $product2 = GetCameraSpacs($id_b_rows);
 
+        $filter = GetCameraFilterInfo();
+        //var_dump($filter);
+
+        $view_info = GetCameraViewInfo();
+        //var_dump($view_info);
+
+        $view_info = UpdateCameraViewInfo($view_info, $filter);
+        //var_dump($view_info);
+
 		$test_array = array($category, $product1, $product2);
-		$result .=ShowTable3($test_array);
+		$result .=ShowTable4("camera", $view_info, $test_array);
 
 		return $result;
 	}
