@@ -248,8 +248,8 @@ function TestSpaces($atts) {
 /*        if ($view_info != 1) {*/
             $view_info_name = $filter_name ."ViewInfo";
             $all_view_info = Num2AllFilter($row_num);
-            var_dump($all_view_info);
-            $result .= "<button type =\"submit\"  name = \"filter_clear\"> view all category</button>";
+//            var_dump($all_view_info);
+            $result .= "<button type =\"submit\"  name = \"filter_clear\"> view all category</button><br>";
             $result .= "<button type =\"submit\" >filter check category</button>";
 /*
         } else {
