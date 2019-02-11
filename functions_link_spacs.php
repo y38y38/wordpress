@@ -24,13 +24,6 @@
 
     function LinkTable2($product_a, $product_b)
     {
-/*
-		global $wpdb;
-		$id_a = $product_a;
-		$id_b = $product_b;
-		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
-		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
-*/
 		$result = "<span class=\" aa\">Link</span>";
 
 		$category = GetLinkCategory();
@@ -39,8 +32,9 @@
 
 		$test_array = array($category, $product1, $product2);
 /*		$result =ShowTable3($test_array);*/
+		$result = "<span class=\" LinkIcon\">Link</span>";
 
-		$result =ShowTable4(LINK_CATEGORY, LINK_CATEGORY_NUM, $test_array);
+		$result .= ShowTable4(LINK_CATEGORY, LINK_CATEGORY_NUM, $test_array);
 		return $result;
     }
 

@@ -32,6 +32,13 @@ table td  {
   font-size:100%;
    padding-right : 16px;
 }
+.LinkIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f0c1';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
 
 .CheckIcon:before {
   font-family: "Font Awesome 5 Free";
