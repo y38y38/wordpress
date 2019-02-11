@@ -34,7 +34,7 @@
         $tmp = $tmp & 0x1;
         return $tmp;
     }
-        function GetFilterInfo($category_name)
+    function GetFilterInfo($category_name)
     {
         $camera_filter_info = 0;
 
@@ -77,6 +77,15 @@
     {
         $view_info &= ~$filter_info;
         return $view_info;
+    }
+    
+    function IsUpdateFilter($category_name) {
+        $filter_clear_string = $category_name . FILTER_CLEAR;
+        if(isset($_GET[$filter_clear_string])){
+            return TRUE;
+        }
+        
+
     }
 
 	function ShowTable4($category_name, $category_num, $table)
