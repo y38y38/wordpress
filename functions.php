@@ -328,3 +328,4 @@ include( get_template_directory().'/functions_spacs.php' );
 include( get_template_directory().'/functions_camera_spacs.php' );
 include( get_template_directory().'/functions_video_spacs.php' );
 include( get_template_directory().'/functions_link_spacs.php' );
+include( get_template_directory().'/functions_database.php' );

@@ -2,6 +2,23 @@
     define("VIDEO_CATEGORY", "Vi");
     define("VIDEO_CATEGORY_NUM", 7);
 
+	function GetVideo($video) {
+		if ($video == 1) {
+/*			return "v";*/
+			return "<span class=\" CheckIcon\"></span>";
+			return "";
+		} else {
+			return "-";
+		}
+	}
+	function GetVideoSlowMotionMax($video) {
+		if ($video == 0) {
+			return "-";
+		} else {
+			return $video;
+		}
+	}
+
     function GetVideoSpacs($rows)
     {
 		$video_spac = array();
@@ -25,6 +42,7 @@
 		global $wpdb;
 		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
 		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
+
 		$result = "<span class=\" VideoIcon\">Video Recording</span>";
 
 		$category = array();
@@ -43,7 +61,7 @@
         $product2 = GetVideoSpacs($id_b_rows);
 
 		$test_array = array($category, $product1, $product2);
-/*		$result .=ShowTable3($test_array);*/
+
 		$result .=ShowTable4(VIDEO_CATEGORY, VIDEO_CATEGORY_NUM, $test_array);
 
 		return $result;

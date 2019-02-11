@@ -12,6 +12,23 @@
 
         return $category;
     }
+	function GetAperture($info) {
+		if ( $info == 0 ) {
+			return "No Info";
+		} else {
+			return "f/$info";
+		}
+	}
+
+	function GetPixel($pixel, $dual_info) {
+		if ($dual_info  == NULL) {
+			$pixel = $pixel / 1000000;
+			return "$pixel MP";
+		} else {
+			return $dual_info;
+		}
+		
+	}
 
     function GetCameraSpacs($rows)
     {
