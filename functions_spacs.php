@@ -1,5 +1,5 @@
 <?php
-    define("CAMERA_CATEGORY", "Ca");
+    define("VIDEO_CATEGORY", "Vi");
     define("FILTER_INFO", "FI");
     define("VIEW_INFO", "VI");
 
@@ -126,6 +126,20 @@
         }
         return $filter;
     }
+    function  Array2Bin($filter_array)
+    {
+        $filter_binary = 0;
+        $filter_size = count($filter_array);
+
+        for ( $i = 0; $i < $filter_size ; $i++) {
+            if ($filter_array[$i] == '0') {
+
+            } else {
+                $filter_binary |= 1<<$i;
+            }
+        }
+        return $filter_binary;
+    }
 
     function IsView($view_info, $index)
     {
@@ -210,7 +224,10 @@
 		extract(shortcode_atts(array(
 				'product_a' => '1',
 				'product_b' => '1'), $atts));
-				global $wpdb;
+
+        $result = VideoSpaces3($product_a, $product_b);
+        return $result;
+/*
 		$id_a = $product_a;
 		$id_b = $product_b;
 		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
@@ -235,13 +252,42 @@
 		$test_array = array($category, $product1, $product2);
 		$result .=ShowTable3($test_array);
 		return $result;
+        */
 	}
 	add_shortcode('VideoSpace2Code', 'VideoSpaces2');
 
-    function GetCameraCategoryNum()
+    function VideoSpaces3($product_a, $product_b)
     {
-        return 4;
+		$id_a = $product_a;
+		$id_b = $product_b;
+		global $wpdb;
+		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
+		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
+		$result = "<span class=\" VideoIcon\">Video Recording</span>";
+
+		$category = array();
+		$category[0] = "";
+		$category[1] = "1080 60p";
+		$category[2] = "1080 30p";
+		$category[3] = "720 30p";
+		$category[4] = "480 30p";
+		$category[5] = "1080p Slow Motion Max FPS";
+		$category[6] = "720p Slow Motion Max FPS";
+		$category[7] = "480p Slow Motion Max FPS";
+
+
+        $product1 = GetVideoSpacs($id_a_rows);
+
+        $product2 = GetVideoSpacs($id_b_rows);
+
+		$test_array = array($category, $product1, $product2);
+		$result .=ShowTable3($test_array);
+		return $result;
     }
+
+
+    define("CAMERA_CATEGORY", "Ca");
+    define("CAMERA_CATEGORY_NUM", 4);
     function GetCameraCategory()
     {
 		$category = array();
@@ -265,20 +311,6 @@
 
         return $camera_spac;
     }
-    function  array2bin($filter_array)
-    {
-        $filter_binary = 0;
-        $filter_size = count($filter_array);
-
-        for ( $i = 0; $i < $filter_size ; $i++) {
-            if ($filter_array[$i] == '0') {
-
-            } else {
-                $filter_binary |= 1<<$i;
-            }
-        }
-        return $filter_binary;
-    }
 
     function GetCameraFilterInfo()
     {
@@ -291,7 +323,7 @@
         if(isset($_GET[$filter_name])){
             $camera_filter_info_string = $_GET[$filter_name];
             var_dump($camera_filter_info_string);
-            $camera_filter_info = array2bin($camera_filter_info_string);
+            $camera_filter_info = Array2Bin($camera_filter_info_string);
         }
         //var_dump($camera_filter_info);
         return $camera_filter_info;
@@ -300,7 +332,7 @@
 
     function GetCameraViewInfo()
     {
-        $camera_view_info = 0x1f;
+        $camera_view_info = Num2AllFilter( CAMERA_CATEGORY_NUM + 1);
         if(isset($_GET['filter_clear'])){
             return $camera_view_info;
          }
@@ -325,6 +357,9 @@
 				'product_a' => '1',
 				'product_b' => '1'), $atts));
 
+        $result = CmaeraSpaces4($product_a, $product_b);
+        return $result;
+/*
 		global $wpdb;
 		$id_a = $product_a;
 		$id_b = $product_b;
@@ -352,8 +387,40 @@
 		$result .=ShowTable4(CAMERA_CATEGORY, $view_info, $test_array);
 
 		return $result;
+*/
 	}
 	add_shortcode('CameraSpaces2', 'CameraSpaces2');
+
+    function CmaeraSpaces4($product_a, $product_b)
+    {
+		global $wpdb;
+		$id_a = $product_a;
+		$id_b = $product_b;
+
+		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
+		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
+		$result = "<span class=\" CameraIcon\">Camera</span>";
+
+        $category = GetCameraCategory();
+
+        $product1 = GetCameraSpacs($id_a_rows);
+
+        $product2 = GetCameraSpacs($id_b_rows);
+
+        $filter = GetCameraFilterInfo();
+        //var_dump($filter);
+
+        $view_info = GetCameraViewInfo();
+        //var_dump($view_info);
+
+        $view_info = UpdateCameraViewInfo($view_info, $filter);
+        //var_dump($view_info);
+
+		$test_array = array($category, $product1, $product2);
+		$result .=ShowTable4(CAMERA_CATEGORY, $view_info, $test_array);
+
+		return $result;
+    }
 
     function GetLinkCategory()
     {
@@ -377,6 +444,11 @@
 		extract(shortcode_atts(array(
 				'product_a' => '1',
 				'product_b' => '1'), $atts));
+
+        $result = LinkTable2($product_a, $product_b);
+        return $result;
+
+/*
 		global $wpdb;
 		$id_a = $product_a;
 		$id_b = $product_b;
@@ -392,11 +464,42 @@
 		$result =ShowTable3($test_array);
 
 		return $result;
-
+*/
 	}
+
 	add_shortcode('LinkCode', 'LinkTable');
 
+    function LinkTable2($product_a, $product_b)
+    {
+		global $wpdb;
+		$id_a = $product_a;
+		$id_b = $product_b;
+		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
+		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
 
+		$category = GetLinkCategory();
+        $product1 = GetLinkSpacs($id_a_rows);
+        $product2 = GetLinkSpacs($id_b_rows);
+
+		$test_array = array($category, $product1, $product2);
+		$result =ShowTable3($test_array);
+
+		return $result;
+    }
+
+    function CompareSmartPhone($atts) {
+		extract(shortcode_atts(array(
+				'product_a' => '1',
+				'product_b' => '1'), $atts));
+
+        $result = "<form>";
+        $result .= CmaeraSpaces4($product_a, $product_b);
+        $result .= VideoSpaces3($product_a, $product_b);
+        $result .= LinkTable2($product_a, $product_b);
+        $result .= "</form>";
+        return $result;
+    }
+    add_Shortcode('CompareSmartPhoneCode', 'CompareSmartPhone');
 		
 
 	
