@@ -324,3 +324,5 @@ require get_template_directory() . '/inc/customizer.php';
 
 
 include( get_template_directory().'/functions_spacs.php' );
+
+include( get_template_directory().'/functions_camera_spacs.php' );
