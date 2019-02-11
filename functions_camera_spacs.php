@@ -30,8 +30,10 @@
 		
 	}
 
-    function GetCameraSpacs($rows)
+    function GetCameraSpacs($id)
     {
+        $rows = GetDataBaseFormId($id);
+
    		$camera_spac = array();
 		$camera_spac[0] = $rows->name;
         $camera_spac[1] = GetPixel($rows->rear_camera_pixel, $rows->rear_camera_dual_spac);
@@ -44,23 +46,16 @@
 
     function CmaeraSpaces4($product_a, $product_b)
     {
-		global $wpdb;
-		$id_a = $product_a;
-		$id_b = $product_b;
-
-		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
-		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
-
-		$result = "<span class=\" CameraIcon\">Camera</span>";
 
         $category = GetCameraCategory();
 
-        $product1 = GetCameraSpacs($id_a_rows);
+        $product1 = GetCameraSpacs($product_a);
 
-        $product2 = GetCameraSpacs($id_b_rows);
+        $product2 = GetCameraSpacs($product_b);
 
 		$test_array = array($category, $product1, $product2);
 
+		$result = "<span class=\" CameraIcon\">Camera</span>";
 		$result .=ShowTable4(CAMERA_CATEGORY, CAMERA_CATEGORY_NUM, $test_array);
 
 		return $result;

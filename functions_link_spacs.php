@@ -11,8 +11,9 @@
         return $category;
     }
 
-    function GetLinkSpacs($rows)
+    function GetLinkSpacs($id)
     {
+        $rows = GetDataBaseFormId($id);
    		$link_spac = array();
 		$link_spac[0] = $rows->name;
         $link_spac[1] =  "<a href=\"$rows->link\">link</a>";
@@ -23,17 +24,18 @@
 
     function LinkTable2($product_a, $product_b)
     {
+/*
 		global $wpdb;
 		$id_a = $product_a;
 		$id_b = $product_b;
 		$id_a_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_a"); 	
 		$id_b_rows = $wpdb->get_row("SELECT * FROM wp_products WHERE id = $id_b"); 	
-
+*/
 		$result = "<span class=\" aa\">Link</span>";
 
 		$category = GetLinkCategory();
-        $product1 = GetLinkSpacs($id_a_rows);
-        $product2 = GetLinkSpacs($id_b_rows);
+        $product1 = GetLinkSpacs($product_a);
+        $product2 = GetLinkSpacs($product_b);
 
 		$test_array = array($category, $product1, $product2);
 /*		$result =ShowTable3($test_array);*/
