@@ -174,8 +174,6 @@
         $result = "<form method=\"get\">";
         $result .= CmaeraSpaces4($product_a, $product_b);
         $result .= VideoSpaces3($product_a, $product_b);
-        $result .= "<script language=javascript>hoge()</script>";
-
         $result .= LinkTable2($product_a, $product_b);
         $result .= "</form>";
         return $result;
