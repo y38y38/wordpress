@@ -31,8 +31,9 @@
         $product2 = GetLinkSpacs($product_b);
 
 		$test_array = array($category, $product1, $product2);
-/*		$result =ShowTable3($test_array);*/
-		$result = "<span class=\" LinkIcon\">Link</span>";
+
+        $result = SetAnchor(LINK_CATEGORY);
+		$result .= "<span class=\" LinkIcon\">Link</span>";
 
 		$result .= ShowTable4(LINK_CATEGORY, LINK_CATEGORY_NUM, $test_array);
 		return $result;

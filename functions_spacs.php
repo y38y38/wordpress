@@ -1,7 +1,8 @@
 <?php
-    define("FILTER_INFO", "FI");
-    define("VIEW_INFO", "VI");
-    define("FILTER_CLEAR", "FC");
+    define("FILTER_INFO", "Filter");
+    define("VIEW_INFO", "View");
+    define("FILTER_CLEAR", "FilterClear");
+    define("ANCHOR", "Anchor");
 
 
     function Num2AllFilter($category_num)
@@ -157,6 +158,15 @@
 		return $result;
 	}
 
+	function SetAnchor($category_name)
+    {
+        $anchor_name = $category_name . ANCHOR;
+
+        $result = "<a name= $anchor_name></a>";
+
+        return $result;
+    }
+
     function CompareSmartPhone($atts) {
 		extract(shortcode_atts(array(
 				'product_a' => '1',
@@ -164,6 +174,8 @@
         $result = "<form method=\"get\">";
         $result .= CmaeraSpaces4($product_a, $product_b);
         $result .= VideoSpaces3($product_a, $product_b);
+        $result .= "<script language=javascript>hoge()</script>";
+
         $result .= LinkTable2($product_a, $product_b);
         $result .= "</form>";
         return $result;

@@ -33,6 +33,19 @@
           enable_page_level_ads: true
      });
 </script>
+
+<script>
+    function JumpAnchorLink() {
+        window.location.hash = "LinkAnchor"
+    }
+    function JumpAnchorCamera() {
+        window.location.hash = "CameraAnchor"
+    }
+    function JumpAnchorVideo() {
+        window.location.hash = "VideoAnchor"
+    }
+</script>
+
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style_spac.css" type="text/css" />	
 
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">

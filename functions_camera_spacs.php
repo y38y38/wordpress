@@ -55,8 +55,8 @@
 
 		$test_array = array($category, $product1, $product2);
 
-		$result = "<span class=\" CameraIcon\">Camera</span>";
-        $result .= "<a name= CAMERA_CATEGORY></a>";
+        $result = SetAnchor(CAMERA_CATEGORY);
+		$result .= "<span class=\" CameraIcon\">Camera</span>";
 		$result .= ShowTable4(CAMERA_CATEGORY, CAMERA_CATEGORY_NUM, $test_array);
 
 		return $result;
