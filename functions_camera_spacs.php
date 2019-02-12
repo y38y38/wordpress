@@ -1,5 +1,5 @@
 <?php
-    define("CAMERA_CATEGORY", "Ca");
+    define("CAMERA_CATEGORY", "Camera");
     define("CAMERA_CATEGORY_NUM", 4);
     function GetCameraCategory()
     {

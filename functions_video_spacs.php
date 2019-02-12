@@ -1,5 +1,5 @@
 <?php
-    define("VIDEO_CATEGORY", "Vi");
+    define("VIDEO_CATEGORY", "Video");
     define("VIDEO_CATEGORY_NUM", 7);
     function GetVideoCategory()
     {
