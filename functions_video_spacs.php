@@ -58,8 +58,7 @@
         $product2 = GetVideoSpacs($product_b);
 
 		$test_array = array($category, $product1, $product2);
-        $result = SetAnchor(VIDEO_CATEGORY);
-		$result .= "<span class=\" VideoIcon\">Video Recording</span>";
+		$result = "<span class=\" VideoIcon\">Video Recording</span>";
 		$result .=ShowTable4(VIDEO_CATEGORY, VIDEO_CATEGORY_NUM, $test_array);
 
 		return $result;
