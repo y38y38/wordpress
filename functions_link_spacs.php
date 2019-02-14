@@ -1,5 +1,5 @@
 <?php
-    define("LINK_CATEGORY", "Li");
+    define("LINK_CATEGORY", "Link");
     define("LINK_CATEGORY_NUM", 1);
 
     function GetLinkCategory()
@@ -32,8 +32,7 @@
 
 		$test_array = array($category, $product1, $product2);
 
-        $result = SetAnchor(LINK_CATEGORY);
-		$result .= "<span class=\" LinkIcon\">Link</span>";
+		$result = "<span class=\" LinkIcon\">Link</span>";
 
 		$result .= ShowTable4(LINK_CATEGORY, LINK_CATEGORY_NUM, $test_array);
 		return $result;

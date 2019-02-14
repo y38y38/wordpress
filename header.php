@@ -34,17 +34,6 @@
      });
 </script>
 
-<script>
-    function JumpAnchorLink() {
-        window.location.hash = "LinkAnchor"
-    }
-    function JumpAnchorCamera() {
-        window.location.hash = "CameraAnchor"
-    }
-    function JumpAnchorVideo() {
-        window.location.hash = "VideoAnchor"
-    }
-</script>
 
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style_spac.css" type="text/css" />	
 
