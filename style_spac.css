@@ -39,6 +39,38 @@ table td  {
   font-size:100%;
    padding-right : 16px;
 }
+.PerformanceIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f2db';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.DesignIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f3cd';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+.PowerIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f241';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.DisplayIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f26c';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+
+
 
 .CheckIcon:before {
   font-family: "Font Awesome 5 Free";
