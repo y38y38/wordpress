@@ -173,6 +173,8 @@
 				'product_b' => '1'), $atts));
         $result = "<form method=\"get\">";
         $result .= DesignSpaces($product_a, $product_b);
+        $result .= PerformanceSpaces($product_a, $product_b);
+        $result .= DisplaySpaces($product_a, $product_b);
         $result .= CmaeraSpaces4($product_a, $product_b);
         $result .= VideoSpaces3($product_a, $product_b);
         $result .= PowerSpaces($product_a, $product_b);

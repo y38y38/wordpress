@@ -4,7 +4,7 @@
         if ($value == 0) {
             return "No Info";
         } else {
-            return $value . $unit;
+            return $value . " " . $unit;
         }
     }
     function GetSupport($value) 
@@ -15,6 +15,14 @@
             return "Support";
         } else {
             return "No Support";
+        }
+    }
+    function GetCharacter($value) 
+    {
+        if ($value == NULL) {
+            return "No Info";
+        } else {
+            return $value ;
         }
     }
 
