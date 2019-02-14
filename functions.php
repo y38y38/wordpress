@@ -330,3 +330,5 @@ include( get_template_directory().'/functions_video_spacs.php' );
 include( get_template_directory().'/functions_link_spacs.php' );
 include( get_template_directory().'/functions_database.php' );
 include( get_template_directory().'/functions_design_spacs.php' );
+include( get_template_directory().'/functions_power_spacs.php' );
+include( get_template_directory().'/functions_common.php' );

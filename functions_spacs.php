@@ -175,6 +175,7 @@
         $result .= DesignSpaces($product_a, $product_b);
         $result .= CmaeraSpaces4($product_a, $product_b);
         $result .= VideoSpaces3($product_a, $product_b);
+        $result .= PowerSpaces($product_a, $product_b);
         $result .= LinkTable2($product_a, $product_b);
         $result .= "</form>";
         return $result;
