@@ -323,7 +323,7 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/customizer.php';
 
 
-include( get_template_directory().'/functions_spacs.php' );
+include( get_template_directory().'/spacs.php' );
 
 include( get_template_directory().'/functions_camera_spacs.php' );
 include( get_template_directory().'/functions_video_spacs.php' );
@@ -336,3 +336,6 @@ include( get_template_directory().'/functions_common.php' );
 include( get_template_directory().'/performance_spacs.php' );
 include( get_template_directory().'/storage_spacs.php' );
 include( get_template_directory().'/device_spacs.php' );
+include( get_template_directory().'/wifi_spacs.php' );
+
+include( get_template_directory().'/functions_spacs.php' );

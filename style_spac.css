@@ -75,6 +75,13 @@ table td  {
   font-size:100%;
    padding-right : 16px;
 }
+.DeviceIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f54a';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
 
 
 

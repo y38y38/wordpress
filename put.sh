@@ -1,1 +1,1 @@
-ftp -n < ftp_functions_php.txt
+ftp -n < list_put.txt

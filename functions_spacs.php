@@ -180,6 +180,14 @@
         $result .= VideoSpaces3($product_a, $product_b);
         $result .= PowerSpaces($product_a, $product_b);
         $result .= DeviceSpaces($product_a, $product_b);
+/*
+        $spac = new Spacs();
+        $result .= $spac->ShowSpacs($product_a, $product_b);
+ */
+
+        $spac = new WifiSpacs();
+        $result .= $spac->ShowSpacs($product_a, $product_b);
+
         $result .= LinkTable2($product_a, $product_b);
         $result .= "</form>";
         return $result;
