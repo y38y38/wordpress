@@ -334,3 +334,5 @@ include( get_template_directory().'/functions_power_spacs.php' );
 include( get_template_directory().'/functions_display_spacs.php' );
 include( get_template_directory().'/functions_common.php' );
 include( get_template_directory().'/performance_spacs.php' );
+include( get_template_directory().'/storage_spacs.php' );
+include( get_template_directory().'/device_spacs.php' );

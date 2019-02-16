@@ -12,9 +12,9 @@
         if ($value == 0) {
             return "No Info";
         } else if ($value == 1) {
-            return "Support";
+            return "<span class=\" CheckIcon\"></span>";
         } else {
-            return "No Support";
+            return "-";
         }
     }
     function GetCharacter($value) 

@@ -68,6 +68,13 @@ table td  {
   font-size:100%;
    padding-right : 16px;
 }
+.StorageIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f0a0';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
 
 
 
