@@ -188,6 +188,10 @@
         $spac = new WifiSpacs();
         $result .= $spac->ShowSpacs($product_a, $product_b);
 
+        $spac = new BandSpacs();
+        $result .= $spac->ShowSpacs($product_a, $product_b);
+
+
         $result .= LinkTable2($product_a, $product_b);
         $result .= "</form>";
         return $result;
