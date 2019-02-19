@@ -1,7 +1,7 @@
 <?php
 
         define("PERFORMANCE_CATEGORY", "Performance");
-        define("PERFORMANCE_CATEGORY_NUM", 5);
+        define("PERFORMANCE_CATEGORY_NUM", 4);
     class PerformanceSpaces
     {
 
@@ -9,9 +9,10 @@
         {
             $category = array();
             $category[0] = "";
-            $category[1] = "CPU";
-            $category[2] = "RAM";
-            $category[3] = "Graphics";
+            $category[1] = "OS";
+            $category[2] = "CPU";
+            $category[3] = "RAM";
+            $category[4] = "Graphics";
             return $category;
 
         }
@@ -21,9 +22,10 @@
             $rows = GetDataBaseFormId($id);
             $spac = array();
             $spac[0] = $rows->name;
-            $spac[1] = GetCharacter($rows->chipset);
-            $spac[2] = GetValueAndUnit($rows->ram, "GB");
-            $spac[3] = GetCharacter($rows->graphics);
+            $spac[1] = GetCharacter($rows->os_type);
+            $spac[2] = GetCharacter($rows->chipset);
+            $spac[3] = GetValueAndUnit($rows->ram, "GB");
+            $spac[4] = GetCharacter($rows->graphics);
         
             return $spac;
         }

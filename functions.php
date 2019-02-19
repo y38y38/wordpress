@@ -336,7 +336,6 @@ include( get_template_directory().'/functions_common.php' );
 include( get_template_directory().'/performance_spacs.php' );
 include( get_template_directory().'/storage_spacs.php' );
 include( get_template_directory().'/device_spacs.php' );
-include( get_template_directory().'/wifi_spacs.php' );
-include( get_template_directory().'/band_spacs.php' );
+include( get_template_directory().'/signal_spacs.php' );
 
 include( get_template_directory().'/functions_spacs.php' );

@@ -180,15 +180,8 @@
         $result .= VideoSpaces3($product_a, $product_b);
         $result .= PowerSpaces($product_a, $product_b);
         $result .= DeviceSpaces($product_a, $product_b);
-/*
-        $spac = new Spacs();
-        $result .= $spac->ShowSpacs($product_a, $product_b);
- */
 
-        $spac = new WifiSpacs();
-        $result .= $spac->ShowSpacs($product_a, $product_b);
-
-        $spac = new BandSpacs();
+        $spac = new SignalSpacs();
         $result .= $spac->ShowSpacs($product_a, $product_b);
 
 

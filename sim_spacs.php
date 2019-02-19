@@ -1,6 +1,6 @@
 <?php
 
-    class  WifiSpacs extends Spacs
+    class  SimSpacs extends Spacs
     {
         const SPAC_CATEGORY_NAME = 'Wifi';
         const SPAC_CATEGORY_NUM = 4;
@@ -9,7 +9,7 @@
         {
             $category = array();
             $category[0] = "";
-            $category[1] = "802.11a";
+            $category[1] = "Sim Slot Number";
             $category[2] = "802.11b";
             $category[3] = "802.11g";
             $category[4] = "802.11n";

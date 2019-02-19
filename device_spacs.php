@@ -9,6 +9,7 @@
         {
             $category = array();
             $category[0] = "";
+            $category[1] = "Sim Slot Number";
             $category[1] = "Audio jack";
             $category[2] = "NFC";
             $category[3] = "GPS";
@@ -25,6 +26,7 @@
             $rows = GetDataBaseFormId($id);
             $spac = array();
             $spac[0] = $rows->name;
+            $spac[1] = GetValueAndUnit($rows->sim_slot_number, "");
             $spac[1] = GetSupport($rows->audio_jack);
             $spac[2] = GetSupport($rows->nfc);
             $spac[3] = GetCharacter($rows->gps_type);
