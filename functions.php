@@ -339,3 +339,8 @@ include( get_template_directory().'/device_spacs.php' );
 include( get_template_directory().'/signal_spacs.php' );
 
 include( get_template_directory().'/functions_spacs.php' );
+
+
+
+
+include( get_template_directory().'/input_spacs.php' );
