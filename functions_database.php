@@ -21,6 +21,28 @@
   
         return $columns_name;
     }
+    function GetFieldAndType()
+    {
+        global $wpdb;
+
+        $columns = $wpdb->get_results("SHOW COLUMNS FROM  wp_products"); 	
+        $columns_num = count($columns);
+        //var_dump($columns_num);
+
+        $filed = array();
+        for($i = 0;$i < $columns_num;$i++) {
+            $field[$i] =  $columns[$i]->Field;
+        }
+
+        $type = array();
+        for($i = 0;$i < $columns_num;$i++) {
+            $type[$i] =  $columns[$i]->Type;
+        }
+
+        $field_and_type = array($field, $type);
+  
+        return $field_and_type;
+    }
 
 
 ?>

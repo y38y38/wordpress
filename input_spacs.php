@@ -35,7 +35,9 @@
 
     }
     function InputSpacePost() {
-        //var_dump($_POST);
+        var_dump($_POST);
+        $field_and_type = GetFieldAndType();
+        var_dump($field_and_type);
     }
     function InputSpaceGet() {
         $colums_list = GetColumns();
