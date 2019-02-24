@@ -30,7 +30,7 @@
     {
         $rows = GetDataBaseFormId($id);
 		$spac = array();
-		$spac[0] = $rows->name;
+		$spac[0] = $rows->product_name;
 		$spac[1] = GetResolution($rows->screen_heiight, $rows->screen_width);
 		$spac[2] = GetValueAndUnit($rows->screen_size, "inch");
 		$spac[3] = GetPpi($rows->screen_heiight, $rows->screen_width,$rows->screen_size);

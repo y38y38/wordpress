@@ -33,7 +33,7 @@
     {
         $rows = GetDataBaseFormId($id);
 		$spac = array();
-		$spac[0] = $rows->name;
+		$spac[0] = $rows->product_name;
 		$spac[1] = GetLength($rows->thickness);
 		$spac[2] = GetLength($rows->width);
 		$spac[3] = GetLength($rows->height);

@@ -17,6 +17,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="profile" href="https://gmpg.org/xfn/11" />
 	<?php wp_head(); ?>
+	
+	
+	
+<!-- add contents start-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-59997071-2"></script>
 <script>
@@ -33,13 +37,16 @@
           enable_page_level_ads: true
      });
 </script>
-
-
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style_spac.css" type="text/css" />	
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
-	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+<!-- add contents end-->
 
-	</head>
+	
+	
+	
+	
+</head>
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
@@ -59,9 +66,9 @@
 						$discussion = ! is_page() && twentynineteen_can_show_post_thumbnail() ? twentynineteen_get_discussion_data() : null;
 
 						$classes = 'entry-header';
-						if ( ! empty( $discussion ) && absint( $discussion->responses ) > 0 ) {
-							$classes = 'entry-header has-discussion';
-						}
+					if ( ! empty( $discussion ) && absint( $discussion->responses ) > 0 ) {
+						$classes = 'entry-header has-discussion';
+					}
 					?>
 					<div class="<?php echo $classes; ?>">
 						<?php get_template_part( 'template-parts/header/entry', 'header' ); ?>

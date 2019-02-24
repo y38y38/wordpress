@@ -21,7 +21,7 @@
         {
             $rows = GetDataBaseFormId($id);
             $spac = array();
-            $spac[0] = $rows->name;
+            $spac[0] = $rows->product_name;
             $spac[1] = GetValueAndUnit($rows->rom, "GB");
             $spac[2] = GetSupport($rows->expandable_memory);
             $spac[3] = GetSupport($rows->independence_expandable_memory);

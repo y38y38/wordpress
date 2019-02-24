@@ -38,7 +38,7 @@
     {
         $rows = GetDataBaseFormId($id);
 		$spac = array();
-		$spac[0] = $rows->name;
+		$spac[0] = $rows->product_name;
 		$spac[1] = GetQuickChargeType($rows);
 		$spac[2] = GetSupport($rows->wireless_charging);
 		$spac[3] = GetValueAndUnit($rows->battery_capacity, "mAh");

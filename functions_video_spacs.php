@@ -36,7 +36,7 @@
     {
         $rows = GetDataBaseFormId($id);
 		$video_spac = array();
-		$video_spac[0] = $rows->name;
+		$video_spac[0] = $rows->product_name;
 		$video_spac[1] = GetVideo($rows->video_1080_60p);
 		$video_spac[2] = GetVideo($rows->video_1080_30p);
 		$video_spac[3] = GetVideo($rows->video_720_30p);

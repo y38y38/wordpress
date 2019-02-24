@@ -25,7 +25,7 @@
         {
             $rows = GetDataBaseFormId($id);
             $spac = array();
-            $spac[0] = $rows->name;
+            $spac[0] = $rows->product_name;
             $spac[1] = GetValueAndUnit($rows->sim_slot_number, "");
             $spac[2] = GetSupport($rows->audio_jack);
             $spac[3] = GetSupport($rows->nfc);

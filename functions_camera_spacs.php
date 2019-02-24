@@ -35,7 +35,7 @@
         $rows = GetDataBaseFormId($id);
 
    		$camera_spac = array();
-		$camera_spac[0] = $rows->name;
+		$camera_spac[0] = $rows->product_name;
         $camera_spac[1] = GetPixel($rows->rear_camera_pixel, $rows->rear_camera_dual_spac);
         $camera_spac[2] = GetAperture($rows->rear_camera_aperture);
         $camera_spac[3] = GetPixel($rows->front_camera_pixel, $rows->front_camera_dual_spac);

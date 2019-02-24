@@ -12,7 +12,7 @@
             //var_dump($spac_list[$i]);
             $result  .= "</td>";
             $result  .= "<td>";
-            $spac_value_name = "i_" . $spac_list[$i];
+            $spac_value_name =  $spac_list[$i];
             //var_dump($spac_value_name);
             $result  .= "<input type = \"text\" name = \"$spac_value_name\">";
             //$result  .= "$spac_value_name";
@@ -38,6 +38,10 @@
         var_dump($_POST);
         $field_and_type = GetFieldAndType();
         var_dump($field_and_type);
+
+        global $wpdb;
+
+        $columns = $wpdb->insert( 'wp_products', k);
     }
     function InputSpaceGet() {
         $colums_list = GetColumns();

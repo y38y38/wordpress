@@ -15,7 +15,7 @@
     {
         $rows = GetDataBaseFormId($id);
    		$link_spac = array();
-		$link_spac[0] = $rows->name;
+		$link_spac[0] = $rows->product_name;
         $link_spac[1] =  "<a href=\"$rows->link\">link</a>";
 
         return $link_spac;
