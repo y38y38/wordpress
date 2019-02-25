@@ -35,13 +35,105 @@
 
     }
     function InputSpacePost() {
-        var_dump($_POST);
+        //var_dump($_POST);
         $field_and_type = GetFieldAndType();
-        var_dump($field_and_type);
+        //var_dump($field_and_type);
+        $keys = array_keys($_POST);
+        //var_dump($keys);
+        $spac_size = count($keys) - 1; //delete submit 
+        //var_dump($spac_size);
+        $insert_data = array();
+
+
+        //delete id, because id is auto increment
+        for ($i = 1; $i < $spac_size ; $i ++) {
+        //for ($i = 0; $i < 5 ; $i ++) {
+
+            $int_len = strlen('int');
+            $char_len = strlen('char');
+            $float_len = strlen('float');
+            $data_len = strlen('date');
+            $text_len = strlen('text');
+
+            //var_dump($i);
+            //var_dump($field_and_type[1][$i]);
+            //var_dump($int_len);
+            //var_dump($ret);
+            if (strncmp( $field_and_type[1][$i] , 'int', $int_len) == 0) {
+                //print("1");
+                $insert_data[$keys[$i]] = intval($_POST[$keys[$i]]);
+            } else if (strncmp( $field_and_type[1][$i] , 'char', $char_len) == 0) {
+                //print("2");
+                $insert_data[$keys[$i]] = $_POST[$keys[$i]];
+            } else if (strncmp( $field_and_type[1][$i] , 'float', $float_len) == 0) {
+                //print("3");
+                $insert_data[$keys[$i]] = floatval($_POST[$keys[$i]]);
+            } else if (strncmp( $field_and_type[1][$i] , 'date', $float_len) == 0) {
+                //print("4");
+                $insert_data[$keys[$i]] = $_POST[$keys[$i]];
+            } else if (strncmp( $field_and_type[1][$i] , 'text', $float_len) == 0) {
+                //print("5");
+                $insert_data[$keys[$i]] = $_POST[$keys[$i]];
+            } else {
+                //print("6");
+                $insert_data[$keys[$i]] = $_POST[$keys[$i]];
+
+            }
+            //var_dump($insert_data);
+
+        }
+
+        var_dump($insert_data);
+
+        $insert_format = array();
+        for ($i = 1; $i < $spac_size ; $i ++) {
+
+            $int_len = strlen('int');
+            $char_len = strlen('char');
+            $float_len = strlen('float');
+            $data_len = strlen('date');
+            $text_len = strlen('text');
+
+            if (strncmp( $field_and_type[1][$i] , 'int', $int_len) == 0) {
+                $insert_format[$i - 1] = "%d";
+            } else if (strncmp( $field_and_type[1][$i] , 'char', $char_len) == 0) {
+                $insert_format[$i - 1] = "%s";
+            } else if (strncmp( $field_and_type[1][$i] , 'float', $float_len) == 0) {
+                $insert_format[$i - 1] = "%f";
+            } else if (strncmp( $field_and_type[1][$i] , 'date', $float_len) == 0) {
+                $insert_format[$i - 1] = "%s";
+            } else if (strncmp( $field_and_type[1][$i] , 'text', $float_len) == 0) {
+                $insert_format[$i - 1] = "%s";
+            } else {
+                $insert_format[$i - 1] = "%s";
+            }
+            //var_dump($insert_data);
+
+        }
+        var_dump($insert_format);
 
         global $wpdb;
+        $wpdb->insert( 
+            'wp_products', 
+            $insert_data,
+            $insert_format
 
-        $columns = $wpdb->insert( 'wp_products', k);
+            /*
+            array
+                'product_name' => 'redmi',
+                'height' => 120.5,
+                'water_proof' => 1
+            ),
+            array(
+                '%s',
+                '%f',
+                '%d'
+            )
+             */
+        );
+/*
+        var_dump($wpdb->insert_id);
+ */
     }
     function InputSpaceGet() {
         $colums_list = GetColumns();
@@ -50,7 +142,7 @@
     }
 
     function InputSpacs (){
-        var_dump($_SERVER["REQUEST_METHOD"]);
+        //var_dump($_SERVER["REQUEST_METHOD"]);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = InputSpacePost();
         } else {
