@@ -83,7 +83,7 @@
 
         }
 
-        var_dump($insert_data);
+        //var_dump($insert_data);
 
         $insert_format = array();
         for ($i = 1; $i < $spac_size ; $i ++) {
@@ -110,7 +110,7 @@
             //var_dump($insert_data);
 
         }
-        var_dump($insert_format);
+        //var_dump($insert_format);
 
         global $wpdb;
         $wpdb->insert( 
