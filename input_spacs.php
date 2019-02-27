@@ -118,18 +118,6 @@
             $insert_data,
             $insert_format
 
-            /*
-            array
-                'product_name' => 'redmi',
-                'height' => 120.5,
-                'water_proof' => 1
-            ),
-            array(
-                '%s',
-                '%f',
-                '%d'
-            )
-             */
         );
 /*
         var_dump($wpdb->insert_id);
@@ -151,5 +139,6 @@
         return  $result;
     }
     add_Shortcode('InputSpacsCode', 'InputSpacs');
+
 ?>
 

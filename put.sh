@@ -1,1 +1,1 @@
-ftp -n < list_put.txt
+ftp -n < nobackup/list_put.txt
