@@ -344,3 +344,4 @@ include( get_template_directory().'/functions_spacs.php' );
 
 
 include( get_template_directory().'/input_spacs.php' );
+include( get_template_directory().'/post_functions.php' );
