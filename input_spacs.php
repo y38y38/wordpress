@@ -47,7 +47,6 @@
 
         //delete id, because id is auto increment
         for ($i = 1; $i < $spac_size ; $i ++) {
-        //for ($i = 0; $i < 5 ; $i ++) {
 
             $int_len = strlen('int');
             $char_len = strlen('char');
@@ -119,9 +118,13 @@
             $insert_format
 
         );
-/*
-        var_dump($wpdb->insert_id);
- */
+        /*
+            var_dump($wpdb->insert_id);
+        */
+        $result = $wpdb->insert_id;
+
+        PostFromId($wpdb->insert_id);
+        return $result;
     }
     function InputSpaceGet() {
         $colums_list = GetColumns();

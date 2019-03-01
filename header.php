@@ -22,14 +22,16 @@
 	
 <!-- add contents start-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59997071-2"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-59997071-3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    gtag('js', new Date());
 
-  gtag('config', 'UA-59997071-2');
-</script>
+    gtag('config', 'UA-59997071-3');
+    </script>
+
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({

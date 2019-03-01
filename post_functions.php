@@ -4,7 +4,8 @@
 		extract(shortcode_atts(array(
 				'id' => '0'
 				), $atts));
-        //GetProductNameFromId($id);
+        //$result = GetProductNameFromId($id);
+        //var_dump($result);
         PostFromId($id);
     }
     add_Shortcode('MyTestPageCode', 'MyTestPage');
@@ -20,77 +21,79 @@
     }
     function PostFromId($id) {
 
-        //for ($i = 0; $i < $id ;$i++) {
-        //for ($i = 4; $i < $id ;$i++) {
-        $i = 2;
-            $insert_data = array();
-            $insert_format = array();
-            $insert_data['post_author'] = 1;
-            $insert_format[0] =  "%d";
-
-            $insert_data['post_date'] = current_time("mysql");
-            $insert_format[1] =  "%s";
-
-            $insert_data['post_date_gmt'] = current_time("mysql", 1);
-            $insert_format[2] =  "%s";
-
-            $my_content = "[CompareSmartPhoneCode product_a=\"$id\" product_b=\"$i\"]";
-            $insert_data['post_content'] = $my_content;
-            $insert_format[3] =  "%s";
-
-            $product1 = GetProductNameFromId($id);
+        var_dump( $id);
+        for ($i = 1; $i < $id ;$i++) {
             $product2 = GetProductNameFromId($i);
-            $my_title = $product1  . " vs " . $product2;
-            $insert_data['post_title'] = $my_title;
-            $insert_format[4] =  "%s";
+            if (isset($product2 )) {
+                $insert_data = array();
+                $insert_format = array();
+                $insert_data['post_author'] = 1;
+                $insert_format[0] =  "%d";
 
-            //$insert_data['post_excerpt'] = ;
-            $insert_data['post_status'] = 'publish';
-            $insert_format[5] =  "%s";
+                $insert_data['post_date'] = current_time("mysql");
+                $insert_format[1] =  "%s";
 
-            $insert_data['comment_status'] = 'open';
-            $insert_format[6] =  "%s";
+                $insert_data['post_date_gmt'] = current_time("mysql", 1);
+                $insert_format[2] =  "%s";
 
-            $insert_data['ping_status'] = 'open';
-            $insert_format[7] =  "%s";
+                $my_content = "[CompareSmartPhoneCode product_a=\"$id\" product_b=\"$i\"]";
+                $insert_data['post_content'] = $my_content;
+                $insert_format[3] =  "%s";
 
-            //$insert_data['post_password'] = ;
-            $my_title = str_replace(" ", "-", $my_title);
-            $insert_data['post_name'] = $my_title;
-            $insert_format[8] =  "%s";
+                $product1 = GetProductNameFromId($id);
+                $my_title = $product1  . " vs " . $product2;
+                $insert_data['post_title'] = $my_title;
+                $insert_format[4] =  "%s";
 
-            //$insert_data['to_ping'] = ;
-            $insert_data['post_modified'] = current_time("mysql");
-            $insert_format[9] =  "%s";
+                //$insert_data['post_excerpt'] = ;
+                $insert_data['post_status'] = 'publish';
+                $insert_format[5] =  "%s";
 
-            $insert_data['post_modified_gmt'] = current_time("mysql", 1);
-            $insert_format[10] =  "%s";
+                $insert_data['comment_status'] = 'open';
+                $insert_format[6] =  "%s";
 
-            //$insert_data['post_content_filtered'] = ;
-            //$insert_data['post_parent'] = ;
-            $my_guid = $my_title . current_time("mysql");
-            $insert_data['guid'] = $my_guid;
-            $insert_format[11] =  "%s";
+                $insert_data['ping_status'] = 'open';
+                $insert_format[7] =  "%s";
 
-            //$insert_data['menu_order'] = ;
-            $insert_data['post_type'] = 'post';
-            $insert_format[12] =  "%s";
+                //$insert_data['post_password'] = ;
+                $my_title = str_replace(" ", "-", $my_title);
+                $insert_data['post_name'] = $my_title;
+                $insert_format[8] =  "%s";
 
-            //$insert_data['post_mime_type'] = ;
-            //$insert_data['comment_count'] = ;
+                //$insert_data['to_ping'] = ;
+                $insert_data['post_modified'] = current_time("mysql");
+                $insert_format[9] =  "%s";
+
+                $insert_data['post_modified_gmt'] = current_time("mysql", 1);
+                $insert_format[10] =  "%s";
+
+                //$insert_data['post_content_filtered'] = ;
+                //$insert_data['post_parent'] = ;
+                $my_guid = $my_title . current_time("mysql");
+                $insert_data['guid'] = $my_guid;
+                $insert_format[11] =  "%s";
+
+                //$insert_data['menu_order'] = ;
+                $insert_data['post_type'] = 'post';
+                $insert_format[12] =  "%s";
+
+                //$insert_data['post_mime_type'] = ;
+                //$insert_data['comment_count'] = ;
+                global $wpdb;
+                $wpdb->insert( 
+                    'wp_posts', 
+                    $insert_data,
+                    $insert_format
+
+                );
+                //var_dump($i);
+                //var_dump($insert_data);
+                //var_dump($insert_format);
+            }  
             
-        //}
-        //var_dump($insert_data);
-        //var_dump($insert_format);
+        }
 
-        global $wpdb;
-        $wpdb->insert( 
-            'wp_posts', 
-            $insert_data,
-            $insert_format
-
-        );
-        var_dump($wpdb->insert_id);
+        //var_dump($wpdb->insert_id);
     }
 ?>
 
