@@ -346,3 +346,4 @@ include( get_template_directory().'/functions_spacs.php' );
 include( get_template_directory().'/input_spacs.php' );
 include( get_template_directory().'/post_functions.php' );
 include( get_template_directory().'/adsence_functions.php' );
+include( get_template_directory().'/image_functions.php' );

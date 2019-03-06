@@ -43,6 +43,14 @@
   
         return $field_and_type;
     }
+    function GetImageFromProductName($product_name)
+    {
+        global $wpdb;
+        $file_name = $product_name . "_01";
+        $image = $wpdb->get_row("SELECT guid FROM wp_posts WHERE post_mime_type like 'image/%' and post_title like '$file_name'");
+        return $image->guid;
+    }
+
 
 
 ?>
