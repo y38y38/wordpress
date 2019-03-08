@@ -21,9 +21,13 @@
             $spac[0] = $rows->product_name;
             $image_url = GetImageFromProductName($rows->product_name);
             //var_dump($image_url);
-            $spac[1] = "<img src='$image_url' alt= '$rows->product_name' title='$rows->product_name'>";
-        
+            if (isset($image_url )) {
+                $spac[1] = "<img src='$image_url' alt= '$rows->product_name' title='$rows->product_name'>";
+            } else {
+                $spac[1] = " ";
+            }
             return $spac;
+        
         }
     }
 ?>
