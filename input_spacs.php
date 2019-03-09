@@ -143,5 +143,29 @@
     }
     add_Shortcode('InputSpacsCode', 'InputSpacs');
 
+
+    function CreateSpacPagePost() {
+        //var_dump($_POST['product_id']);
+        $id = intval($_POST['product_id']);
+        //var_dump($id);
+        PostFromId($id);
+    }
+    function CreateSpacPageGet() {
+        $result  = "<form method= \"post\" >";
+        $result .= "<input type = \"text\" name = \"product_id\">";
+        $result .= "<button type =\"submit\"  name = \"send \">send</button>";
+        $result .= "</form>";
+        return $result;
+    }
+    function CreateSpacPage() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $result = CreateSpacPagePost();
+        } else {
+            $result = CreateSpacPageGet();
+        }
+        return $result;
+    }
+    add_Shortcode('CreateSpacPageCode', 'CreateSpacPage');
+
 ?>
 

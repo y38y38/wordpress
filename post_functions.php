@@ -6,7 +6,7 @@
 				), $atts));
         //$result = GetProductNameFromId($id);
         //var_dump($result);
-        PostFromId($id);
+        //PostFromId($id);
     }
     add_Shortcode('MyTestPageCode', 'MyTestPage');
 
