@@ -1,0 +1,25 @@
+@charset "utf-8";
+/*
+ * Theme Name: Sunshine
+ * Theme URI: http://example.com/
+ * Description:sample 
+ * Version: 2.0
+ * Author: Yuusuke
+ * Author URI: http://example.com/
+ * */
+
+/* Reset.css */
+
+main {
+    float: left;
+    width: 70%;
+}
+
+.sidebar {
+    float: right;
+    width: 25%;
+}
+
+.page-footer {
+    clear: both;
+}

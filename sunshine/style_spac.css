@@ -1,0 +1,161 @@
+table {
+    border-collapse: collapse;
+	font-size:70%;
+	text-align: left;
+	border: 1.8px #e0e0e0 solid;
+    margin: 3px 20px;/* up/down and left/right*/
+}
+
+table,th,td {
+	color: #000000;
+	font-size:80%;
+	padding: 10px 12px;
+}
+table td  {
+	width: 150px;
+	color: #808080;
+	font-size:75%;
+}
+
+.CameraIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f030';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+.VideoIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f03d';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.LinkIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f0c1';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.PerformanceIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f2db';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.DesignIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f3cd';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+.PowerIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f241';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.DisplayIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f26c';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.StorageIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f0a0';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+.DeviceIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f54a';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+.SignalIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f012';
+  font-weight: 900;
+  font-size:100%;
+   padding-right : 16px;
+}
+
+
+
+.CheckIcon:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f00c';
+  font-weight: 900;
+  font-size:100%;
+  color: #7aff7a;
+}
+
+button {
+    font-size:50%;
+    width:200px;
+    height::5px;
+	text-align: left;
+    background:#ffffff;
+    color: #808080;
+    font-weight:normal;
+}
+button:hover {
+    font-size:50%;
+    width:200px;
+    height::5px;
+	text-align: left;
+    background:#f5f5f5;
+    color: #808080;
+    font-weight:normal;
+}
+
+
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.CheckBoxes input[type="checkbox"] { display: none; }
+
+.CheckBoxes input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+
+.CheckBoxes input[type="checkbox"] + label:before { }
+
+.CheckBoxes input[type="checkbox"]:checked + label:before {
+  content: '';
+  display: block;
+  border: 1px solid #000000;
+  width: 8px;
+  height: 15px;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+}
+
+
+
