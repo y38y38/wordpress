@@ -23,3 +23,24 @@ main {
 .page-footer {
     clear: both;
 }
+body {margin: 10px 10px 10px 10px;}
+
+h1 {
+    font-size:4em;
+    margin:20px 20px 20px 20px;
+}
+
+h2.hero-title {
+    font-size:4em;
+
+}
+
+a {
+    color : black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #202020;
+    text-decoration: none;
+}

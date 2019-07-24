@@ -347,3 +347,4 @@ include( get_template_directory().'/input_spacs.php' );
 include( get_template_directory().'/post_functions.php' );
 include( get_template_directory().'/adsence_functions.php' );
 include( get_template_directory().'/image_functions.php' );
+include( get_template_directory().'/add_new_blog.php' );
